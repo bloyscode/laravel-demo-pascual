@@ -9,6 +9,8 @@ Route::get('/', function () {
 });
 
 Route::get('/calculator',[CalculatorController::class,'showCalculatorPage']);
+Route::post('/calculator',[CalculatorController::class,'calculate'])->name('callcalculate');
+//Route::post('/calculate', 'CalculatorController@calculate')->name('callcalculate');
 
 Route::get('/index', function () {
     return view('mypages.index');

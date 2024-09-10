@@ -7,16 +7,35 @@
 </head>
 <body>
 
-	<button onclick="DisplayName(5,6)">Click me to add</button>
+	<!-- <button onclick="DisplayName(5,6)">Click me to add</button> -->
+
+	
 	<form>
-		<label for="num1">Number 1</label>
+		<label for="num1">Number 1:</label>
 		<input type="number" id="num1" name="num1" required>
 		<br>
-		<label for="num2">Number 2</label>
+		<br>
+		<label for="num2">Number 2:</label>
 		<input type="number" id="num2" name="num2" required>
 		<br>
-		<button type="button" onclick="calculateSum()">Calculate</button>
+		<br>
+		<select id="operator" onchange="calculateSum()">
+			<option value="+">Add</option>
+			<option value="-">Minus</option>
+			<option value="*">Multiply</option>
+			<option value="/">Divide</option>
+		</select>
+		<br>
+		<br>
+		<!-- <button type="button" onclick="calculateSum()">Calculate</button> -->
 	</form>
+	<p id="num1Display"></p>
+	<p id="num2Display"></p>
+	<h1 style="font-weight: bold;" id="result"></h1>
+	
+	<!-- <p id="result">Result: <span id="result-value"></span></p> -->
+
+
 	
 	<!-- <p id="demo1"></p>
 	<p id="demo2"></p>
@@ -50,7 +69,47 @@
 		console.log(students.lastname); -->
 		
 	<!-- </script> -->
+
+
 	 <script>
+		document.getElementById('num1').addEventListener('input',function(){
+			document.getElementById('num1Display').textContent = "Num 1: " + this.value 
+		})
+		document.getElementById('num2').addEventListener('input',function(){
+			document.getElementById('num2Display').textContent = "Num 2: " + this.value
+		})
+
+		
+		function calculateSum(){
+			const num1 = parseFloat(document.getElementById('num1').value);
+			const num2 = parseFloat(document.getElementById('num2').value);
+
+			// alert(num1 + num2);
+			// document.getElementById('result-value').innerHTML = num1 + num2;
+
+			var operator = document.getElementById("operator").value;
+			var result;
+			if (operator == "+") {
+				result = num1 + num2;
+		}else if(operator == "-"){
+			result = num1 - num2;
+		}else if(operator ==  "*"){
+			result = num1 * num2;
+		}else if(operator == "/"){
+			result = num1 / num2;
+		}else if(num2 == 0){
+			result  = "Cannot  divide by zero";
+		}else{
+			result = num1 / num2;
+		}
+		if(isNaN(result)){
+			result = "No input";
+		}
+		document.getElementById('result').innerHTML = result;
+
+	}
+
+
 		// Array object:
 		// const cars = ["saab","volvol","honda"];
 		// console.log(cars[0]);
@@ -67,9 +126,9 @@
 		// }
 		// console.log(DisplayName())
 
-		function DisplayName(a,b){
-			alert (a + b);
-		}
+		// function DisplayName(a,b){
+		// 	alert (a + b);
+		// }
 		// console.log(DisplayName(5,6))
 
 

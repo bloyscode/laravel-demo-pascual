@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Grade Calculator</title>
+</head>
+
+<body>
+  <center>
+    <div class="container">
+        <h1>Grade Calculator</h1>
+        <form>
+          <label for="grade1">Grade 1:</label>
+          <input type="number" id="grade1"><br><br>
+          <label for="grade2">Grade 2:</label>
+          <input type="number" id="grade2"><br><br>
+          <label for="grade3">Grade 3:</label>
+          <input type="number" id="grade3"><br><br>
+          <br>
+        </form>
+        <div class="output">
+          <p>Grade 1: <span id="outputGrade1"></span></p>
+          <p>Grade 2: <span id="outputGrade2"></span></p>
+          <p>Grade 3: <span id="outputGrade3"></span></p>
+          <p>Average: <span id="outputAverage"></span></p>
+          <p>Equivalent: <span id="outputEquivalent"></span></p>
+          <button type="button" id="clear" onclick="clearInputs()">Clear</button>
+
+        </div>
+      </div>
+    
+      <script>
+        const grade1Input = document.getElementById("grade1");
+        const grade2Input = document.getElementById("grade2");
+        const grade3Input = document.getElementById("grade3");
+    
+    
+        grade1Input.addEventListener("input", calculateGrades);
+        grade2Input.addEventListener("input", calculateGrades);
+        grade3Input.addEventListener("input", calculateGrades);
+    
+    
+        function calculateGrades() {
+          let grade1 = parseFloat(grade1Input.value);
+          let grade2 = parseFloat(grade2Input.value);
+          let grade3 = parseFloat(grade3Input.value);
+    
+    
+          document.getElementById("outputGrade1").textContent = grade1;
+          document.getElementById("outputGrade2").textContent = grade2;
+          document.getElementById("outputGrade3").textContent = grade3;
+    
+    
+          let average = (grade1 + grade2 + grade3) / 3;
+          document.getElementById("outputAverage").textContent = average.toFixed(2);
+    
+    
+          let equivalent = "";
+          if (average >= 90) {
+            equivalent = "A";
+          } else if (average >= 80) {
+            equivalent = "B";
+          } else if (average >= 75) {
+            equivalent = "C";
+          } else {
+            equivalent = "D (Fail)";
+          }
+          document.getElementById("outputEquivalent").textContent = equivalent;
+        }
+        function clearInputs() {
+        document.getElementById("grade1").value = "";
+        document.getElementById("grade2").value = "";
+        document.getElementById("grade3").value = "";
+        document.getElementById("outputGrade1").textContent = "";
+        document.getElementById("outputGrade2").textContent = "";
+        document.getElementById("outputGrade3").textContent = "";
+        document.getElementById("outputAverage").textContent = "";
+        document.getElementById("outputEquivalent").textContent = "";
+      }
+      </script>
+  </center>
+</body>
+
+</html>
