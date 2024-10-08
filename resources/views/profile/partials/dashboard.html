@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diwata Pares</title>
+</head>
+<body>
+    <center>
+    <h1>Food Order Calculator</h1>
+    <label>Select Food:</label>
+    <select id="choices">
+        <option value="25">Siomai Php25</option>
+        <option value="40">Footlong Php40</option>
+        <option value="30">Siopao Php30</option>
+        <option value="75">Pares Php75</option>
+    </select>
+    <br>
+    <br>
+    <label for="qty">Quantity:</label>
+    <input type="number" id="qty" name="qty">
+    <br>
+    <br>
+    <button type="button" onclick="calculateSum()">Calculate Total</button>
+    <br>
+    <p id="totalDisplay">Total Amount:</p>
+    <label for="cash">Enter Cash:</label>
+    <input type="number" id="cash" name="cash">
+    <br>
+    <br>
+    <p id="changeDisplay">Change:</p>
+    </center>
+</body>
+<script>
+    function calculateSum() {
+        const selectedFood = parseFloat(document.getElementById('choices').value);
+        const quantity = parseFloat(document.getElementById('qty').value);
+
+        const total = selectedFood * quantity;
+
+        document.getElementById('totalDisplay').textContent = "Total Amount: " + total.toFixed(2);
+        document.getElementById('cash').focus();
+    }
+    function calculateChange() {
+        const total = parseFloat(document.getElementById('totalDisplay').textContent.split(": ")[1]);
+        const cash = parseFloat(document.getElementById('cash').value);
+
+        const change = cash - total;
+
+        document.getElementById('changeDisplay').textContent = "Change: " + change.toFixed(2);
+    }
+
+    document.getElementById('cash').addEventListener('input', function() {
+        calculateChange();
+    });
+
+    
+    document.getElementById('choices').addEventListener('change', function(event) {
+        if (event.key === 'Enter') {
+            calculateSum();
+        }
+    });
+</script>
+</html>

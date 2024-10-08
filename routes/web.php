@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\CalController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,6 +12,8 @@ Route::get('/', function () {
 Route::get('/calculator',[CalculatorController::class,'showCalculatorPage']);
 Route::post('/calculator',[CalculatorController::class,'calculate'])->name('callcalculate');
 //Route::post('/calculate', 'CalculatorController@calculate')->name('callcalculate');
+
+
 
 Route::get('/index', function () {
     return view('mypages.index');
@@ -43,3 +46,47 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+//para prelim nga operator
+Route::get('/operator', function () {
+    return view('prelim-pascual.operator');
+})->name('operator');
+
+Route::get('/add', function () {
+    return view('prelim-pascual.add');
+})->name('add');
+
+Route::get('/sub', function () {
+    return view('prelim-pascual.sub');
+})->name('sub');
+
+Route::get('/multiply', function () {
+    return view('prelim-pascual.multiply');
+})->name('multiply');
+
+Route::get('/division', function () {
+    return view('prelim-pascual.division');
+})->name('division');
+
+//para sa controller prelim
+Route::post('/add',[CalController::class,'add'])->name('pascual-prelim.add');
+Route::post('/sub',[CalController::class,'sub'])->name('pascual-prelim.sub');
+Route::post('/multiply',[CalController::class,'multiply'])->name('pascual-prelim.multiply');
+Route::post('/division',[CalController::class,'division'])->name('pascual-prelim.division');
+
+
+//middleware
+Route::get('/showLogin', function () {
+    return view('mymiddlewaredemo.login');
+})->name('login_Form');
+
+Route::post('/showLogin', function () {
+    return view('mymiddlewaredemo.login');
+})->middleware('login.middleware');
+
+Route::get('/showDashboard', function (){
+    return view('mymiddlewaredemo.dashboard');
+})->name('gotodashboard');
+
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prelim</title>
+</head>
+<body>
+    <center>
+    <form>
+        <h1>Diwata Pares Overload Login</h1>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <br>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <br>
+        <button type="button" onclick='log()' >Login</button>
+    </form>
+    <script>
+        function log(){
+            const username1 = 'admin123'
+            const password1 = 'diwata143'
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if(username == username1 && password == password1){
+                window.location.href='dashboard.html'
+                alert('Login Sucessful')
+            }else{
+                alert('Invalid Credentials')
+            }
+        }
+    </script>
+    </center>
+</body>
+</html>
