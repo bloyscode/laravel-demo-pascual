@@ -7,7 +7,7 @@
 </head>
 <body>
     @if(!Auth::check())
-    <h1>You are not authenticated, please login <a href="{{route('login-form')}}">LOGIN</a></h1>
+    <h1>You are not authenticated, please login <a href="{{route('login-form')}}">Login</a></h1>
     @else
     <h1>Welcome to dashboard, {{ Auth::user()->name}}</h1>
     <form method="POST" action="{{ route('logout')}}">
@@ -15,7 +15,7 @@
         <x-dropdown-link :href="route('logout')"
         onclick="event.preventDefault();
         this.closest('form').submit();">
-        {{ __( 'logout')}}
+        <h1>{{ __( 'Logout')}}</h1>
 </x-dropdown-link>
 </form>
 @endif    
