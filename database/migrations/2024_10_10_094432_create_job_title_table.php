@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::rename('event','event_data');
+        Schema::create('job_title', function (Blueprint $table) {
+            $table->id();
+            $table->string('description');
+        });
     }
 
     /**
@@ -20,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('job_title');
     }
 };

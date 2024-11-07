@@ -5,7 +5,7 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\CalController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
+Route::get('/dd', function () {
     return view('welcome');
 });
 
@@ -35,9 +35,9 @@ Route::get('/bloyskie1',function(){
 	return view("pascual1");
 })->name ('cojie1');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+
 
 //para prelim nga operator
 Route::get('/operator', function () {
@@ -88,5 +88,22 @@ Route::get('/showDashboard', function (){
     return view('mymiddlewaredemo.dashboard');
 })->name('gotodashboard');
 
+//design
+Route::get('/', function () {
+    return view('SIR_PASCUAL.login');
+})->name('login-form');
+
+Route::get('/signup', function () {
+    return view('SIR_PASCUAL.signup');
+})->name('signup-form');
 
 
+require __DIR__.'/auth.php';
+
+Route::get('/main-dashboard', function () {
+    return view('SIR_PASCUAL.dashboard');
+})->name('main-dashboard');
+
+Route::get('/dashboard', function () {
+    return view('SIR_PASCUAL.dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
