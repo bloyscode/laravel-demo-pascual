@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_title', function (Blueprint $table) {
-            $table->id();
-            $table->string('description');
+        Schema::table('users', function (Blueprint $table) {
+            //
+            $table->string('role')->after('password');
         });
     }
 
@@ -22,6 +22,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_title');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };

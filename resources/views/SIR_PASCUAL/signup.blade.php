@@ -37,6 +37,14 @@
                                 placeholder="name@company.com" required="">
                         </div>
                         <div>
+                            <label for="role">Select role: </label>
+                            <select name="role" id="role" required>
+                                <Option value="admin">Administrator</Option>
+                                <Option value="judge">Judge</Option>
+                                <Option value="staff">Staff</Option>
+                            </select>
+                        </div>
+                        <div>
                             <label for="password"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
                             <input type="password" name="password" id="password" placeholder="••••••••"
