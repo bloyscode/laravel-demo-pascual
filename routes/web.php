@@ -4,6 +4,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\CalController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
+
 
 Route::get('/dd', function () {
     return view('welcome');
@@ -107,3 +109,40 @@ Route::get('/main-dashboard', function () {
 Route::get('/dashboard', function () {
     return view('SIR_PASCUAL.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+
+
+//admin routes
+Route::middleware(['auth'])->group(function(){
+    Route::middleware(['role:admin'])->prefix('admin')->name('admin.')->group(function(){
+//route 1
+        Route::get('/main-dashboard', function () {
+            return view('SIR_PASCUAL.dashboard');
+        })->name('main-dashboard');
+
+//route 2
+        Route::controller(EventController::class)->group(function (){
+            Route::post('/add_event','add_event')->name('add_event');
+        });
+
+    });
+
+
+
+//registrar route
+    Route::middleware(['role:registrar'])->prefix('registrar')->name('registrar.')->group(function(){
+
+        Route::get('/main-dashboard', function () {
+            return view('SIR_PASCUAL.dashboard');
+        })->name('dashboard');
+
+    });
+
+//faculty route
+    Route::middleware(['role:faculty'])->prefix('faculty')->name('faculty.')->group(function(){
+
+        Route::get('/main-dashboard', function () {
+            return view('SIR_PASCUAL.dashboard');
+        })->name('dashboard');
+    });
+});
