@@ -6,6 +6,12 @@ use Illuminate\Http\Request;
 
 class EventController extends Controller
 {
+
+    public function index(){
+        $events = Event::all();
+        return view('SIR_PASCUAL.dashboard', compact('events'));
+    }
+
     //
     public function add_event(Request $request){
         $request->validate([
