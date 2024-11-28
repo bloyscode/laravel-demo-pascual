@@ -6,7 +6,21 @@
     @vite(['resources/css/app.css','resources/js/app.js'])
     <title>Dashboard</title>
 </head>
+
 <body class="bg-gray-100">
+
+    @if(session('success'))
+    <x-sweetalert type="success" :message="session('success')"/>
+    @endif
+
+    @if (session('info'))
+    <x-sweetalert type="info" :message="session('info')"/>
+    @endif
+
+    @if(session('error'))
+    <x-sweetalert type="error" :message="session('error')"/>
+    @endif
+
     <div class="container mx-auto mt-10">
         @if(Auth::user()->hasRole('admin'))
             <h1 class="text-center text-2xl font-bold text-gray-800 mb-5">
@@ -85,5 +99,7 @@
             </button>
         </form>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
