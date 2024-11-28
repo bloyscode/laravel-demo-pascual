@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/regular.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/solid.min.css">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <title>Dashboard</title>
 </head>
@@ -85,6 +88,8 @@
                         <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">ID</th>
                         <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Event Name</th>
                         <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Description</th>
+                        <th class="px-4 py-2 text-left text-sm font-semibold text-gray-600">Action</th>
+
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -93,6 +98,11 @@
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->id }}</td>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->event_name }}</td>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->event_description }}</td>
+                        <td class="px-4 py-2 text-sm text-gray-800">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <i class="fa-solid fa-trash"></i>
+                        </td>
+
                     </tr>
                     @empty
                     <tr>
