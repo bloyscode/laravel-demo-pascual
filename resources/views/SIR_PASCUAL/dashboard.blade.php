@@ -41,7 +41,7 @@
                 <!-- Add Event Button -->
                 <button @click="open = true"
                     class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-200">
-                    Add Event
+                    ADD EVENT
                 </button>
 
                 <!-- Add Event Modal -->
@@ -56,9 +56,10 @@
                         </div>
                         <form action="{{ route('admin.add_event') }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="mb-4">
                                 <label for="event_name" class="block text-sm font-medium text-gray-700">Event Name</label>
-                                <input type="text" id="event_name" name="event_name" value="{{ old('event_name') }}"
+                                <input type="text" id="event_name" name="event_name"
                                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                     required>
                             </div>
@@ -66,7 +67,7 @@
                                 <label for="event_description"
                                     class="block text-sm font-medium text-gray-700">Event Description</label>
                                 <input type="text" id="event_description" name="event_description"
-                                    value="{{ old('event_description') }}"
+
                                     class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
                                     required>
                             </div>
@@ -93,14 +94,59 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
+
+
+
                     @forelse($events as $event)
                     <tr>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->id }}</td>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->event_name }}</td>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->event_description }}</td>
                         <td class="px-4 py-2 text-sm text-gray-800">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                            <i class="fa-solid fa-trash"></i>
+                            <div x-data="{ open: false }">
+                                <!-- Add Event Button -->
+                                <button @click="open = true"
+                                    class="bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition duration-200">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+
+                                <!-- Add Event Modal -->
+                                <div x-show="open" x-cloak
+                                    class="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50">
+                                    <div class="bg-white rounded-lg shadow-lg max-w-md w-full p-6">
+                                        <div class="flex justify-between items-center mb-4">
+                                            <h2 class="text-lg font-bold text-gray-800">EDIT EVENT</i></h2>
+                                            <button @click="open = false" class="text-gray-600 hover:text-red-600">
+                                                &times;
+                                            </button>
+                                        </div>
+                                        <form action="{{ route('admin.update_event',$event->id) }}" method="POST">
+                                            @csrf
+                                            
+                                            <div class="mb-4">
+                                                <label for="event_name" class="block text-sm font-medium text-gray-700">Event Name</label>
+                                                <input type="text" id="event_name" name="event_name" value="{{$event->event_name}}"
+                                                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                                    required>
+                                            </div>
+                                            <div class="mb-4">
+                                                <label for="event_description"
+                                                    class="block text-sm font-medium text-gray-700">Event Description</label>
+                                                <input type="text" id="event_description" name="event_description"
+                                                    value="{{$event->event_description}}"
+                                                    class="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                                                    required>
+                                            </div>
+                                            <button type="submit"
+                                                class="w-full bg-blue-600 text-white py-2 rounded-lg shadow hover:bg-blue-700 transition duration-200">
+                                                EDIT EVENT
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            {{-- <i class="fa-solid fa-pen-to-square"></i> --}}
+                            {{-- <i class="fa-solid fa-trash"></i> --}}
                         </td>
 
                     </tr>
@@ -120,7 +166,7 @@
                 @csrf
                 <button type="submit"
                     class="bg-red-500 text-white px-6 py-2 rounded-lg shadow hover:bg-red-600 transition duration-200">
-                    Logout
+                    LOGOUT
                 </button>
             </form>
         </div>
