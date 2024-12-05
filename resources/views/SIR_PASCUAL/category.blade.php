@@ -58,7 +58,7 @@
                         </div>
                         <form action="{{ route('admin.add_event') }}" method="POST">
                             @csrf
-                            <!-- Form fields -->
+                            @method('PUT')
                             <div class="mb-4">
                                 <label for="event_name" class="block text-sm font-medium text-gray-700">Event Name</label>
                                 <input type="text" id="event_name" name="event_name"
@@ -76,7 +76,6 @@
                                 Submit
                             </button>
                         </form>
-
                     </div>
                 </div>
             </div>
@@ -84,7 +83,6 @@
 
         <!-- Event Table -->
         <div class="overflow-x-auto bg-white shadow-lg rounded-lg">
-
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-100">
                     <tr>
@@ -95,7 +93,7 @@
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
-
+                    
                     @forelse($events as $event)
                     <tr>
                         <td class="px-4 py-2 text-sm text-gray-800">{{ $event->id }}</td>

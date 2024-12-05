@@ -39,7 +39,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        dd($event);
+
         try{
             $request->validate([
                 'event_name' => 'required|string|max:255',
@@ -61,5 +61,12 @@ class EventController extends Controller
             return redirect()->route('admin.main-dashboard')
                                 ->with('error','Event exist!');
         }
+    }
+
+    public function delete_event(Request $request, $id){
+        $event = Event::findOrFail($id);
+        $event->delete();
+        return redirect()->route('admin.main-dashboard')
+        ->with('success', 'Event deleted successfully.');
     }
 }

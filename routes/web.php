@@ -5,6 +5,7 @@ use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\CalController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\CategoryController;
 
 
 Route::get('/dd', function () {
@@ -123,9 +124,15 @@ Route::middleware(['auth'])->group(function(){
             Route::get('/main-dashboard','index')->name('main-dashboard');
             Route::post('/add_event','add_event')->name('add_event');
             Route::put('/update_event/{id}','update_event')->name('update_event');
+            Route::delete('/delete_event/{id}','delete_event')->name('delete_event');
         });
 
     });
+    Route::controller(CategoryController::class)->group(function (){
+        Route::get('/category','index')->name('category');
+
+
+});
 
 
 
